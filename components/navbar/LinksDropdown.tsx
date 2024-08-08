@@ -32,8 +32,14 @@ function LinksDropdown() {
         <SignedOut>
           <DropdownMenuItem>
             <SignInButton mode="modal">
-              <button></button>
+              <button className="w-full text-left">Login</button>
             </SignInButton>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <SignUpButton mode="modal">
+              <button className="w-full text-left">Register</button>
+            </SignUpButton>
           </DropdownMenuItem>
         </SignedOut>
         <SignedIn>
