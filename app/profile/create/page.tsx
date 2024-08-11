@@ -16,6 +16,10 @@ const CreateProfilePage = () => {
         <form action={createProfileAction}>
           <div className="mb-2">
             <Label htmlFor="firstName">First Name</Label>
+            <Input type="text" id="firstName" name="firstName" />
+            <Button type="submit" size="lg">
+              Create Profile
+            </Button>
           </div>
         </form>
       </div>
