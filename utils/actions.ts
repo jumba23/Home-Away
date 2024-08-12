@@ -26,6 +26,12 @@ export const createProfileAction = async (
       },
     });
 
+    await clerkClient.users.updateUserMetadata(user.id, {
+      privateMetadata: {
+        hasProfile: true,
+      },
+    });
+
     return { message: "profile created" };
   } catch (error) {
     console.log(error);
