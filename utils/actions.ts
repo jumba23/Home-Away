@@ -16,6 +16,7 @@ export const createProfileAction = async (
 
     const rawData = Object.fromEntries(formData);
     const validatedFields = profileSchema.parse(rawData);
+
     await db.profile.create({
       data: {
         // First three values do not exist in our object
@@ -31,10 +32,12 @@ export const createProfileAction = async (
         hasProfile: true,
       },
     });
-
-    return { message: "profile created" };
+    // no longer needed for the toast message, since we are redirecting
+    // return { message: "profile created" };
   } catch (error) {
-    console.log(error);
-    return { message: "there was an error..." };
+    return {
+      message: error instanceof Error ? error.message : "An error occurred",
+    };
   }
+  redirect("/");
 };
