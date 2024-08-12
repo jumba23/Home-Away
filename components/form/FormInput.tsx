@@ -23,6 +23,7 @@ const FormInput = (props: FormInputProps) => {
         name={name}
         defaultValue={defaultValue}
         placeholder={placeholder}
+        required
       />
     </div>
   );
