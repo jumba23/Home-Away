@@ -7,7 +7,7 @@ const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
 
 const supabase = createClient(url, key);
 
-const uploadImage = async (image: File) => {
+export const uploadImage = async (image: File) => {
   const timestamp = Date.now();
   const newName = `${timestamp}-${image.name}`;
   const { data } = await supabase.storage
