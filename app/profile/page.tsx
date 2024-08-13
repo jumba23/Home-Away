@@ -32,7 +32,7 @@ const ProfilePage = async () => {
               defaultValue={profile.username}
             />
           </div>
-          <SubmitButton text="Create Profile" />
+          <SubmitButton text="Update Profile" />
         </FormContainer>
       </div>
     </section>
