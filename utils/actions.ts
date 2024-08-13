@@ -15,6 +15,13 @@ const getAuthUser = async () => {
   return user;
 };
 
+const renderError = (error: unknown): { message: string } => {
+  console.log(error);
+  return {
+    message: error instanceof Error ? error.message : "An error occurred",
+  };
+};
+
 export const createProfileAction = async (
   prevState: any,
   formData: FormData
@@ -44,9 +51,7 @@ export const createProfileAction = async (
     // no longer needed for the toast message, since we are redirecting
     // return { message: "profile created" };
   } catch (error) {
-    return {
-      message: error instanceof Error ? error.message : "An error occurred",
-    };
+    return renderError(error);
   }
   redirect("/");
 };
@@ -96,7 +101,8 @@ export const updateProfileAction = async (
     });
 
     revalidatePath("/profile");
-  } catch (error) {}
-
-  return { message: "Profile updated" };
+    return { message: "Profile updated successfully" };
+  } catch (error) {
+    return renderError(error);
+  }
 };
