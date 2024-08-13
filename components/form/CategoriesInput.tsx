@@ -26,7 +26,7 @@ const CategoriesInput = ({ defaultValue }: { defaultValue?: string }) => {
         <SelectContent>
           {categories.map((item) => (
             <SelectItem key={item.label} value={item.label}>
-              <span>
+              <span className="flex items-center gap-2">
                 <item.icon />
                 {item.label}
               </span>
