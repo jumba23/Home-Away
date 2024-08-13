@@ -75,4 +75,5 @@ export const fetchProfile = async () => {
     },
   });
   if (!profile) redirect("/profile/create");
+  return profile;
 };
