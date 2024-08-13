@@ -94,6 +94,8 @@ export const updateProfileAction = async (
       },
       data: validatedFields,
     });
+
+    revalidatePath("/profile");
   } catch (error) {}
 
   return { message: "Profile updated" };
