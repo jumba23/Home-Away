@@ -8,7 +8,7 @@ type PriceInputProps = {
 };
 
 //instead of using the "const name = "price"" approach below, you can use the following approach:
-const name = 
+const name = Prisma.PropertyScalarFieldEnum.price;
 
 const PriceInput = ({ defaultValue }: PriceInputProps) => {
   const name = "price";
