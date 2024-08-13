@@ -112,9 +112,24 @@ export const updateProfileImageAction = async (
   prevState: any,
   formData: FormData
 ): Promise<{ message: string }> => {
-  const image = formData.get("image") as File;
-  const validateFields = validateWithZodSchema(imageSchema, { image });
-  const fullPath = await uploadImage(validateFields.image);
+  const user = await getAuthUser();
+  try {
+    const image = formData.get("image") as File;
+    const validateFields = validateWithZodSchema(imageSchema, { image });
+    const fullPath = await uploadImage(validateFields.image);
 
-  return { message: "Profile image updated successfully" };
+    await db.profile.update({
+      where: {
+        clerkId: user.id,
+      },
+      data: {
+        profileImage: fullPath,
+      },
+    });
+    revalidatePath("/profile");
+
+    return { message: "Profile image updated successfully" };
+  } catch (error) {
+    return renderError(error);
+  }
 };
