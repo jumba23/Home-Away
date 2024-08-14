@@ -21,6 +21,9 @@ const TextAreaInput = ({
         id={name}
         name={name}
         defaultValue={defaultValue || tempDefaultDescription}
+        required
+        rows={5}
+        className="leading-loose"
       />
     </div>
   );
