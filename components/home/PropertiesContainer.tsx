@@ -1,6 +1,12 @@
 import React from "react";
 
-const PropertiesContainer = () => {
+const PropertiesContainer = ({
+  category,
+  search,
+}: {
+  category?: string;
+  search?: string;
+}) => {
   return <div>PropertiesContainer</div>;
 };
 

@@ -1,6 +1,10 @@
-import React from "react";
-
-const CategoriesList = () => {
+const CategoriesList = ({
+  category,
+  search,
+}: {
+  category?: string;
+  search?: string;
+}) => {
   return <div>CategoriesList</div>;
 };
 
