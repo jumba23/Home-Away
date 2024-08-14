@@ -167,3 +167,34 @@ export const createPropertyAction = async (
   }
   redirect("/");
 };
+
+export const fetchProperties = async ({
+  search = "",
+  category,
+}: {
+  search?: string;
+  category?: string;
+}) => {
+  return db.property.findMany({
+    // search for properties based on category and search query
+    where: {
+      category,
+      OR: [
+        { name: { contains: search, mode: "insensitive" } },
+        { tagline: { contains: search, mode: "insensitive" } },
+      ],
+    },
+    // only select the fields we need
+    select: {
+      id: true,
+      name: true,
+      tagline: true,
+      country: true,
+      price: true,
+    },
+    // order by the most recent properties
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+};
