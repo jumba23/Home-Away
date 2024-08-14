@@ -9,3 +9,7 @@ export const formattedCountries = countries.map((item) => {
     location: item.latlng,
   };
 });
+
+export const findCountryByCode = (code: string) => {
+  return formattedCountries.find((country) => country.code === code);
+};
