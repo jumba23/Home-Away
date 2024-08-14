@@ -11,6 +11,7 @@ import {
 const name = "country";
 
 const CountriesInput = ({ defaultValue }: { defaultValue?: string }) => {
+  console.log(formattedCountries);
   return (
     <div className="mb-2">
       <Label htmlFor={name} className="capitalize">
