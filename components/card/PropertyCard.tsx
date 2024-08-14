@@ -22,6 +22,11 @@ const PropertyCard = ({ property }: { property: PropertyCardProps }) => {
             className="rounded-md object-cover transform group-hover:scale-110 transition-transform duration-500"
           />
         </div>
+        <div className="flex justify-between items-center">
+          <h3 className="text-sm font-semibold mt-1">
+            {name.substring(0, 30)}
+          </h3>
+        </div>
       </Link>
     </article>
   );
