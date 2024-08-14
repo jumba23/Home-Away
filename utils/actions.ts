@@ -147,8 +147,21 @@ export const createPropertyAction = async (
 
   try {
     const rawData = Object.fromEntries(formData);
+    //we handle/validate image separately
+    const file = formData.get("image") as File;
+
     const validatedFields = validateWithZodSchema(propertySchema, rawData);
-    return { message: "Property created" };
+    const validatedFile = validateWithZodSchema(imageSchema, { image: file });
+    // upload image to cloud storage - supabase bucket
+    const fullPath = await uploadImage(validatedFile.image);
+
+    await db.property.create({
+      data: {
+        ...validatedFields,
+        image: fullPath,
+        profileId: user.id,
+      },
+    });
   } catch (error) {
     return renderError(error);
   }
