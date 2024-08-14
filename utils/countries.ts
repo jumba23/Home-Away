@@ -5,11 +5,11 @@ export const formattedCountries = countries.map((item) => {
     code: item.cca2,
     name: item.name.common,
     flag: item.flag,
-    region: item.region,
     location: item.latlng,
+    region: item.region,
   };
 });
 
 export const findCountryByCode = (code: string) => {
-  return formattedCountries.find((country) => country.code === code);
+  return formattedCountries.find((item) => item.code === code);
 };
