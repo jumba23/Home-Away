@@ -191,6 +191,7 @@ export const fetchProperties = async ({
       tagline: true,
       country: true,
       price: true,
+      image: true,
     },
     // order by the most recent properties
     orderBy: {
