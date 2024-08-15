@@ -218,3 +218,7 @@ export const fetchFavoriteId = async ({
   });
   return favorite?.id || null;
 };
+
+export const toggleFavoriteAction = async () => {
+  return { message: "Favorite toggled" };
+};
