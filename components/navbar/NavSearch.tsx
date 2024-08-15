@@ -13,7 +13,7 @@ const NavSearch = () => {
 
   const [search, setSearch] = useState(searchParams.get("search") || ""); // search state
 
-  // update search params
+  // update search params and add a debounce
   const handleSearch = useDebouncedCallback((value: string) => {
     const params = new URLSearchParams(searchParams);
     if (value) {
