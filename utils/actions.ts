@@ -199,3 +199,22 @@ export const fetchProperties = async ({
     },
   });
 };
+
+export const fetchFavoriteId = async ({
+  propertyId,
+}: {
+  propertyId: string;
+}) => {
+  const user = await getAuthUser();
+
+  const favorite = await db.favorite.findFirst({
+    where: {
+      propertyId,
+      profileId: user.id,
+    },
+    select: {
+      id: true,
+    },
+  });
+  return favorite?.id || null;
+};
