@@ -1,23 +1,23 @@
 import Image from "next/image";
 
-const ImageContainer = ({
+function ImageContainer({
   mainImage,
   name,
 }: {
   mainImage: string;
   name: string;
-}) => {
-  <section className="h-[300px] md:h-[500px] relative mt-8">
-    <Image
-      src={mainImage}
-      alt={name}
-      fill
-      sizes="100vw"
-      className="object-cover rounded"
-      priority
-    />
-  </section>;
-  return <div>ImageContainer</div>;
-};
-
+}) {
+  return (
+    <section className="h-[300px] md:h-[500px] relative mt-8">
+      <Image
+        src={mainImage}
+        fill
+        sizes="100vw"
+        alt={name}
+        className="object-cover  rounded-md"
+        priority
+      />
+    </section>
+  );
+}
 export default ImageContainer;
