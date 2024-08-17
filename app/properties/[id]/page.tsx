@@ -5,6 +5,7 @@ import BreadCrumbs from "@/components/properties/BreadCrumbs";
 import ImageContainer from "@/components/properties/ImageContainer";
 import PropertyDetails from "@/components/properties/PropertyDetails";
 import ShareButton from "@/components/properties/ShareButton";
+import UserInfo from "@/components/properties/UserInfo";
 import { fetchPropertyDetails } from "@/utils/actions";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -15,6 +16,8 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
   if (!property) redirect("/");
   const { baths, bedrooms, beds, guests } = property;
   const details = { baths, bedrooms, beds, guests };
+  const firstName = property.profile.firstName;
+  const profileImage = property.profile.profileImage;
 
   return (
     <section>
@@ -35,6 +38,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
             <PropertyRating inPage propertyId={property.id} />
           </div>
           <PropertyDetails details={details} />
+          <UserInfo profile={{ profileImage, firstName }} />
         </div>
         <div className="lg:col-span-4 flex flex-col items-center">
           {/*calendar*/}
