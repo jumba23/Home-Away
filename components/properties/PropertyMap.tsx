@@ -16,7 +16,29 @@ import Title from "./Title";
 const PropertyMap = ({ countryCode }: { countryCode: string }) => {
   const defaultLocation = [51.505, -0.09] as [number, number];
   const location = findCountryByCode(countryCode)?.location as [number, number];
-  return <div>PropertyMap</div>;
+
+  return (
+    <div className="mt-4">
+      <div className="mb-4">
+        <Title text="Where you will be staying" />
+        <CountryFlagAndName countryCode={countryCode} />
+      </div>
+      <MapContainer
+        className="h-[50vh] rounded-lg relative z-0"
+        zoomControl={false}
+        center={location || defaultLocation}
+        zoom={7}
+        scrollWheelZoom={false}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <ZoomControl position="bottomright" />
+        <Marker position={location || defaultLocation} icon={markerIcon} />
+      </MapContainer>
+    </div>
+  );
 };
 
 export default PropertyMap;
