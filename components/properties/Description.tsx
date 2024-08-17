@@ -17,7 +17,18 @@ const Description = ({ description }: { description: string }) => {
       ? words.splice(0, 100).join(" ") + "..."
       : description;
 
-  return <div>Description</div>;
+  return (
+    <article className="mt-4">
+      <Title text="Description" />
+      <p>
+        {displayDescription && (
+          <Button variant="link" className="pl-0" onClick={toggleDescription}>
+            {isFullDescriptionShown ? "Show less" : "Show more"}
+          </Button>
+        )}
+      </p>
+    </article>
+  );
 };
 
 export default Description;
