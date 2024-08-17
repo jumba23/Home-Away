@@ -42,7 +42,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
           <PropertyDetails details={details} />
           <UserInfo profile={{ profileImage, firstName }} />
           <Separator className="mt-4" />
-          <Description>{property.description}</Description>
+          <Description description={property.description} />
         </div>
         <div className="lg:col-span-4 flex flex-col items-center">
           {/*calendar*/}
