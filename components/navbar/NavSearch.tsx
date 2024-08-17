@@ -1,14 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { Input } from "../ui/input";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 import { useState, useEffect } from "react";
 
 const NavSearch = () => {
   // hooks
   const searchParams = useSearchParams(); // get search params
-  const pathname = usePathname(); // get current path
   const { replace } = useRouter(); // get router methods - to navigate back home
 
   const [search, setSearch] = useState(searchParams.get("search") || ""); // search state
@@ -21,7 +20,7 @@ const NavSearch = () => {
     } else {
       params.delete("search");
     }
-    replace(`${pathname}?${params.toString()}`);
+    replace(`/?${params.toString()}`);
   }, 500);
 
   useEffect(() => {
