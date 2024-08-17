@@ -12,6 +12,18 @@ import Description from "@/components/properties/Description";
 import { redirect } from "next/navigation";
 import React from "react";
 import Amenities from "@/components/properties/Amenities";
+import dynamic from "next/dynamic";
+import loading from "../loading";
+import { Skeleton } from "@/components/ui/skeleton";
+
+// Dynamic import for the map component since it's not needed on the server
+const DynamicMap = dynamic(
+  () => import("@/components/properties/PropertyMap"),
+  {
+    ssr: false,
+    loading: () => <Skeleton className="h-[400px] w-full" />,
+  }
+);
 
 const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
   const property = await fetchPropertyDetails(params.id);
@@ -45,6 +57,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
           <Separator className="mt-4" />
           <Description description={property.description} />
           <Amenities amenities={property.amenities} />
+          <DynamicMap countryCode={property.country} />
         </div>
         <div className="lg:col-span-4 flex flex-col items-center">
           {/*calendar*/}
