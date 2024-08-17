@@ -23,7 +23,7 @@ const ShareButton = ({
   propertyId: string;
   name: string;
 }) => {
-  const url = process.env.NEXT_PUBLIC_BASE_URL;
+  const url = process.env.NEXT_PUBLIC_WEBSITE_URL;
   const shareLink = `${url}/properties/${propertyId}`;
 
   return (
