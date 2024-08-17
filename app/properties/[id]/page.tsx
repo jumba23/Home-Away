@@ -11,6 +11,7 @@ import { fetchPropertyDetails } from "@/utils/actions";
 import Description from "@/components/properties/Description";
 import { redirect } from "next/navigation";
 import React from "react";
+import Amenities from "@/components/properties/Amenities";
 
 const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
   const property = await fetchPropertyDetails(params.id);
@@ -43,6 +44,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
           <UserInfo profile={{ profileImage, firstName }} />
           <Separator className="mt-4" />
           <Description description={property.description} />
+          <Amenities amenities={property.amenities} />
         </div>
         <div className="lg:col-span-4 flex flex-col items-center">
           {/*calendar*/}
