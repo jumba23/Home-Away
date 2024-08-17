@@ -42,6 +42,12 @@ const ShareButton = ({
         <TwitterShareButton url={shareLink} title={name}>
           <TwitterIcon size={32} round />
         </TwitterShareButton>
+        <LinkedinShareButton url={shareLink} title={name}>
+          <LinkedinIcon size={32} round />
+        </LinkedinShareButton>
+        <EmailShareButton url={shareLink} title={name}>
+          <EmailIcon size={32} round />
+        </EmailShareButton>
       </PopoverContent>
     </Popover>
   );

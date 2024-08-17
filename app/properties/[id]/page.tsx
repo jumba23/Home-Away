@@ -1,5 +1,6 @@
 import FavoriteToggleButton from "@/components/card/FavoriteToggleButton";
 import BreadCrumbs from "@/components/properties/BreadCrumbs";
+import ShareButton from "@/components/properties/ShareButton";
 import { fetchPropertyDetails } from "@/utils/actions";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -18,6 +19,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
         <h1 className="text-4xl font-bold">{property.tagline}</h1>
         <div className="flex space-x-4 items-center">
           {/*share button*/}
+          <ShareButton propertyId={property.id} name={property.name} />
           <FavoriteToggleButton propertyId={property.id} />
         </div>
       </header>
