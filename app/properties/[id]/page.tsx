@@ -6,7 +6,9 @@ import ImageContainer from "@/components/properties/ImageContainer";
 import PropertyDetails from "@/components/properties/PropertyDetails";
 import ShareButton from "@/components/properties/ShareButton";
 import UserInfo from "@/components/properties/UserInfo";
+import { Separator } from "@/components/ui/separator";
 import { fetchPropertyDetails } from "@/utils/actions";
+import Description from "@/components/properties/Description";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -39,6 +41,8 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
           </div>
           <PropertyDetails details={details} />
           <UserInfo profile={{ profileImage, firstName }} />
+          <Separator className="mt-4" />
+          <Description>{property.description}</Description>
         </div>
         <div className="lg:col-span-4 flex flex-col items-center">
           {/*calendar*/}
