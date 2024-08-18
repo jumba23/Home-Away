@@ -29,6 +29,13 @@ const RatingInput = ({
         <SelectTrigger>
           <SelectValue />
         </SelectTrigger>
+        <SelectContent>
+          {numbers.map((number) => (
+            <SelectItem key={number} value={number}>
+              {number}
+            </SelectItem>
+          ))}
+        </SelectContent>
       </Select>
     </div>
   );
