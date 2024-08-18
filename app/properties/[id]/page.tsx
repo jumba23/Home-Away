@@ -15,6 +15,7 @@ import Amenities from "@/components/properties/Amenities";
 import dynamic from "next/dynamic";
 import loading from "../loading";
 import { Skeleton } from "@/components/ui/skeleton";
+import SubmitReview from "@/components/reviews/SubmitReview";
 
 // Dynamic import for the map component since it's not needed on the server
 const DynamicMap = dynamic(
@@ -64,6 +65,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
           <BookingCalendar />
         </div>
       </section>
+      <SubmitReview propertyId={property.id} />
     </section>
   );
 };
