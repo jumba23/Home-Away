@@ -88,3 +88,13 @@ export const propertySchema = z.object({
   }),
   amenities: z.string(),
 });
+
+export const createReviewSchema = z.object({
+  propertyId: z.string(),
+  rating: z.coerce
+    .number()
+    .int()
+    .min(1, { message: "rating must be at least 1" })
+    .max(5, { message: "rating must be at most 5" }),
+  comment: z.string().min(10).max(1000),
+});
