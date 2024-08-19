@@ -26,6 +26,7 @@ function ReviewCard({ reviewInfo, children }: ReviewCardProps) {
               {reviewInfo.name}
             </h3>
             {/* <Rating rating={reviewInfo.rating} /> */}
+            <Rating rating={reviewInfo.rating} />
           </div>
         </div>
       </CardHeader>
