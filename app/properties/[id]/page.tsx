@@ -7,16 +7,16 @@ import PropertyDetails from "@/components/properties/PropertyDetails";
 import ShareButton from "@/components/properties/ShareButton";
 import UserInfo from "@/components/properties/UserInfo";
 import { Separator } from "@/components/ui/separator";
-import { fetchPropertyDetails } from "@/utils/actions";
+import { fetchPropertyDetails, findExistingReview } from "@/utils/actions";
 import Description from "@/components/properties/Description";
 import { redirect } from "next/navigation";
 import React from "react";
 import Amenities from "@/components/properties/Amenities";
 import dynamic from "next/dynamic";
-import loading from "../loading";
 import { Skeleton } from "@/components/ui/skeleton";
 import SubmitReview from "@/components/reviews/SubmitReview";
 import PropertyReviews from "@/components/reviews/PropertyReviews";
+import { auth } from "@clerk/nextjs/server";
 
 // Dynamic import for the map component since it's not needed on the server
 const DynamicMap = dynamic(
@@ -35,6 +35,11 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
   const details = { baths, bedrooms, beds, guests };
   const firstName = property.profile.firstName;
   const profileImage = property.profile.profileImage;
+
+  const { userId } = auth(); // get the current user id using the auth function
+  const isNotOwner = property.profile.clerkId !== userId; // check if the current user is not the owner of the property
+  const reviewDoesNotExist =
+    userId && isNotOwner && !(await findExistingReview(userId, property.id)); // check if the review does not exist
 
   return (
     <section>
