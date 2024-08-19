@@ -71,7 +71,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
           <BookingCalendar />
         </div>
       </section>
-      <SubmitReview propertyId={property.id} />
+      {reviewDoesNotExist && <SubmitReview propertyId={property.id} />}
       <PropertyReviews propertyId={property.id} />
     </section>
   );
