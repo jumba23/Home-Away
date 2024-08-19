@@ -16,6 +16,7 @@ import dynamic from "next/dynamic";
 import loading from "../loading";
 import { Skeleton } from "@/components/ui/skeleton";
 import SubmitReview from "@/components/reviews/SubmitReview";
+import PropertyReviews from "@/components/reviews/PropertyReviews";
 
 // Dynamic import for the map component since it's not needed on the server
 const DynamicMap = dynamic(
@@ -66,6 +67,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
         </div>
       </section>
       <SubmitReview propertyId={property.id} />
+      <PropertyReviews propertyId={property.id} />
     </section>
   );
 };
