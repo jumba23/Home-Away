@@ -45,7 +45,27 @@ const RentalsPage = async () => {
             const { id: propertyId, name, price } = rental;
             const { totalNightsSum, orderTotalSum } = rental;
 
-            return <TableRow key={propertyId}></TableRow>;
+            return (
+              <TableRow key={propertyId}>
+                <TableCell>
+                  <Link
+                    href={`/properties/${propertyId}`}
+                    className="underline text-muted-foreground tracking-wide"
+                  >
+                    {name}
+                  </Link>
+                </TableCell>
+                <TableCell>{formatCurrency(price)}</TableCell>
+                <TableCell>{totalNightsSum || 0}</TableCell>
+                <TableCell>{formatCurrency(orderTotalSum)}</TableCell>
+                <TableCell className="flex items-center gap-x-2">
+                  <Link href={`/properties/${propertyId}/edit`}>
+                    <IconButton actionType="edit" />
+                  </Link>
+                  <DeleteRental propertyId={propertyId} />
+                </TableCell>
+              </TableRow>
+            );
           })}
         </TableBody>
       </Table>
@@ -54,3 +74,13 @@ const RentalsPage = async () => {
 };
 
 export default RentalsPage;
+
+const DeleteRental = ({ propertyId }: { propertyId: string }) => {
+  const deleteRental = deleteRentalAction.bind(null, { propertyId });
+
+  return (
+    <FormContainer action={deleteRental}>
+      <IconButton actionType="delete" />
+    </FormContainer>
+  );
+};
