@@ -59,8 +59,8 @@ const RentalsPage = async () => {
                 <TableCell>{totalNightsSum || 0}</TableCell>
                 <TableCell>{formatCurrency(orderTotalSum)}</TableCell>
                 <TableCell className="flex items-center gap-x-2">
-                  <Link href={`/properties/${propertyId}/edit`}>
-                    <IconButton actionType="edit" />
+                  <Link href={`/rentals/${propertyId}/edit`}>
+                    <IconButton actionType="edit"></IconButton>
                   </Link>
                   <DeleteRental propertyId={propertyId} />
                 </TableCell>
