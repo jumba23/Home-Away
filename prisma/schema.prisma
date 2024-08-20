@@ -24,10 +24,10 @@ model Profile {
   profileImage String
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
-  Property     Property[] // Relation to Property
-  Favorite     Favorite[] // Relation to Favorite
-  Review       Review[] // Relation to Review
-  Booking      Booking[] // Relation to Booking
+  properties   Property[] // Relation to Property
+  favorites    Favorite[] // Relation to Favorite
+  reviews      Review[] // Relation to Review
+  bookings     Booking[] // Relation to Booking
 }
 
 model Property {
@@ -48,9 +48,9 @@ model Property {
   updatedAt   DateTime   @updatedAt
   profile     Profile    @relation(fields: [profileId], references: [clerkId], onDelete: Cascade) // Relation to Profile
   profileId   String
-  Favorite    Favorite[] // Relation to Favorite
-  Review      Review[] // Relation to Review
-  Booking     Booking[] // Relation to Booking
+  favorites   Favorite[] // Relation to Favorite
+  reviews     Review[] // Relation to Review
+  bookings    Booking[] // Relation to Booking
 }
 
 model Favorite {
