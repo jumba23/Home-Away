@@ -17,8 +17,28 @@ const BookingCalendar = () => {
 
   const [range, setRange] = useState<DateRange | undefined>(defaultSelected);
 
+  const bookings = useProperty((state) => state.bookings);
+  const blockedPeriods = generateBlockedPeriods({
+    bookings,
+    today: currentDate,
+  });
+  const { toast } = useToast();
+  const unavailableDates = generateDisabledDates(blockedPeriods);
+
   useEffect(() => {
+    const selectedRange = generateDateRange(range);
+    const isDisabledDateIncluded = selectedRange.some((date) => {
+      if (unavailableDates[date]) {
+        setRange(defaultSelected);
+        toast({
+          description: "Some dates are booked. Please select again.",
+        });
+        return true;
+      }
+      return false;
+    });
     useProperty.setState({ range });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [range]);
 
   return (
@@ -28,8 +48,9 @@ const BookingCalendar = () => {
       selected={range}
       onSelect={setRange}
       className="mb-4"
+      // add disabled
+      disabled={blockedPeriods}
     />
   );
 };
-
 export default BookingCalendar;
