@@ -451,7 +451,7 @@ export const createBookingAction = async (prevState: {
   redirect("/bookings");
 };
 
-export const fetchBooking = async () => {
+export const fetchBookings = async () => {
   const user = await getAuthUser();
   const bookings = await db.booking.findMany({
     where: {
