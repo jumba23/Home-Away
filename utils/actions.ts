@@ -450,3 +450,42 @@ export const createBookingAction = async (prevState: {
   }
   redirect("/bookings");
 };
+
+export const fetchBooking = async () => {
+  const user = await getAuthUser();
+  const bookings = await db.booking.findMany({
+    where: {
+      profileId: user.id,
+    },
+    include: {
+      property: {
+        select: {
+          name: true,
+          id: true,
+          country: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  return bookings;
+};
+
+export const deleteBookingAction = async (prevState: { bookingId: string }) => {
+  const { bookingId } = prevState;
+  const user = await getAuthUser();
+  try {
+    await db.booking.delete({
+      where: {
+        id: bookingId,
+        profileId: user.id,
+      },
+    });
+    revalidatePath("/bookings");
+    return { message: "Booking deleted successfully" };
+  } catch (error) {
+    return renderError(error);
+  }
+};
