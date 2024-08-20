@@ -16,6 +16,7 @@ import {
 import { FormContainer } from "@/components/form/FormContainer";
 import { IconButton } from "@/components/form/Buttons";
 import { fetchBookings, deleteBookingAction } from "@/utils/actions";
+import { start } from "repl";
 const BookingsPage = async () => {
   const bookings = await fetchBookings();
   if (bookings.length === 0) return <EmptyList />;
@@ -36,7 +37,35 @@ const BookingsPage = async () => {
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody></TableBody>
+        <TableBody>
+          {bookings.map((booking) => {
+            const { id, orderTotal, totalNights, checkIn, checkOut } = booking;
+            const { id: propertyId, name, country } = booking.property;
+
+            const startDate = formatDate(checkIn);
+            const endDate = formatDate(checkOut);
+
+            return (
+              <TableRow key={id}>
+                <TableCell>
+                  <Link
+                    href={`/properties/${propertyId}`}
+                    className="underline text-muted-foreground"
+                  >
+                    {name}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <CountryFlagAndName countryCode={country} />
+                </TableCell>
+                <TableCell>{totalNights}</TableCell>
+                <TableCell>{formatCurrency(orderTotal)}</TableCell>
+                <TableCell>{startDate}</TableCell>
+                <TableCell>{endDate}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
       </Table>
     </div>
   );
