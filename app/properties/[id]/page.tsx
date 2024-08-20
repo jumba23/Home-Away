@@ -41,7 +41,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
   const reviewDoesNotExist =
     userId && isNotOwner && !(await findExistingReview(userId, property.id)); // check if the review does not exist
 
-  console.log(property.bookings);
+  console.log("bookings -", property.bookings);
 
   return (
     <section>
