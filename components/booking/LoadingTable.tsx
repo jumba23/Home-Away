@@ -1,5 +1,15 @@
-const LoadingTable = () => {
-  return <div>LoadingTable</div>;
+import { Skeleton } from "../ui/skeleton";
+
+const LoadingTable = ({ rows }: { rows?: number }) => {
+  const tableRows = Array.from({ length: rows || 5 }, (_, i) => {
+    return (
+      <div className="mb-4" key={i}>
+        <Skeleton className="w-full h-8 rounded" />
+      </div>
+    );
+  });
+
+  return <>{tableRows}</>;
 };
 
 export default LoadingTable;
