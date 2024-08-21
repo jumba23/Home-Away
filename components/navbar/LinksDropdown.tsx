@@ -18,8 +18,12 @@ import {
   SignUpButton,
   SignIn,
 } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
 function LinksDropdown() {
+  const { userId } = auth();
+  const isAdminUser = userId === process.env.ADMIN_USER_ID;
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -44,6 +48,7 @@ function LinksDropdown() {
         </SignedOut>
         <SignedIn>
           {links.map((link) => {
+            if (link.label === "Admin" && !isAdminUser) return null; // hide admin link if user is not an admin
             return (
               <DropdownMenuItem key={link.href}>
                 <Link href={link.href} className="capitalize w-full">
