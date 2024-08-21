@@ -48,7 +48,7 @@ function LinksDropdown() {
         </SignedOut>
         <SignedIn>
           {links.map((link) => {
-            if (link.label === "Admin" && !isAdminUser) return null; // hide admin link if user is not an admin
+            if (link.label === "admin" && !isAdminUser) return null; // hide admin link if user is not an admin
             return (
               <DropdownMenuItem key={link.href}>
                 <Link href={link.href} className="capitalize w-full">
