@@ -429,6 +429,14 @@ export const createBookingAction = async (prevState: {
   let bookingId: null | string = null;
 
   const { propertyId, checkIn, checkOut } = prevState;
+
+  await db.booking.deleteMany({
+    where: {
+      profileId: user.id,
+      paymentStatus: false,
+    },
+  });
+
   const property = await db.property.findUnique({
     where: { id: propertyId },
     select: { price: true },
